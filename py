@@ -156,3 +156,28 @@ def highest_damage(hurricanes):
 # Test highest damage
 max_damage_cane, max_damage = highest_damage(hurricanes)
 # print(max_damage_cane, max_damage)
+
+# Categorize hurricanes by damage
+def categorize_by_damage(hurricanes):
+    """Categorize hurricanes by damage severity and return a dictionary."""
+    damage_scale = {0: 0, 1: 100000000, 2: 1000000000, 3: 10000000000, 4: 50000000000}
+    hurricanes_by_damage = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for cane in hurricanes:
+        total_damage = hurricanes[cane]['Damage']
+        if total_damage == "Damages not recorded" or total_damage == damage_scale[0]:
+            hurricanes_by_damage[0].append(hurricanes[cane])
+        elif damage_scale[0] < total_damage <= damage_scale[1]:
+            hurricanes_by_damage[1].append(hurricanes[cane])
+        elif damage_scale[1] < total_damage <= damage_scale[2]:
+            hurricanes_by_damage[2].append(hurricanes[cane])
+        elif damage_scale[2] < total_damage <= damage_scale[3]:
+            hurricanes_by_damage[3].append(hurricanes[cane])
+        elif damage_scale[3] < total_damage <= damage_scale[4]:
+            hurricanes_by_damage[4].append(hurricanes[cane])
+        elif total_damage > damage_scale[4]:
+            hurricanes_by_damage[5].append(hurricanes[cane])
+    return hurricanes_by_damage
+
+# Test damage categorization
+hurricanes_by_damage = categorize_by_damage(hurricanes)
+# print(hurricanes_by_damage[5])
