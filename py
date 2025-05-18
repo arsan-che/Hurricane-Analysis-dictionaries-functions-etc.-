@@ -139,3 +139,20 @@ def categorize_by_mortality(hurricanes):
 # Test mortality categorization
 hurricanes_by_mortality = categorize_by_mortality(hurricanes)
 # print(hurricanes_by_mortality[4])
+
+# Find hurricane with highest damage
+def highest_damage(hurricanes):
+    """Identify the hurricane with the greatest damage cost and its cost."""
+    max_damage_cane = 'Cuba I'
+    max_damage = 0
+    for cane in hurricanes:
+        if hurricanes[cane]['Damage'] == 'Damages not recorded':
+            continue
+        if hurricanes[cane]['Damage'] > max_damage:
+            max_damage_cane = cane
+            max_damage = hurricanes[cane]['Damage']
+    return max_damage_cane, max_damage
+
+# Test highest damage
+max_damage_cane, max_damage = highest_damage(hurricanes)
+# print(max_damage_cane, max_damage)
