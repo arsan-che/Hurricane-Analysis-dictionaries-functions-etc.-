@@ -57,3 +57,32 @@ def create_dictionary(names, months, years, max_sustained_winds, areas_affected,
 # Create hurricanes dictionary
 hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_damages, deaths)
 # print(hurricanes)
+
+# Organize hurricanes by year
+def create_year_dictionary(hurricanes):
+    """Convert dictionary with hurricane name as key to a new dictionary with year as the key."""
+    hurricanes_by_year = {}
+    for cane in hurricanes:
+        current_year = hurricanes[cane]['Year']
+        if current_year not in hurricanes_by_year:
+            hurricanes_by_year[current_year] = [hurricanes[cane]]
+        else:
+            hurricanes_by_year[current_year].append(hurricanes[cane])
+    return hurricanes_by_year
+
+# Test year-based dictionary
+hurricanes_by_year = create_year_dictionary(hurricanes)
+# print(hurricanes_by_year[1932])
+
+# Count occurrences of affected areas
+def count_affected_areas(hurricanes):
+    """Count hurricanes affecting each area and return a dictionary with area counts."""
+    affected_areas_count = {}
+    for cane in hurricanes:
+        for area in hurricanes[cane]['Areas Affected']:
+            affected_areas_count[area] = affected_areas_count.get(area, 0) + 1
+    return affected_areas_count
+
+# Test affected areas count
+affected_areas_count = count_affected_areas(hurricanes)
+# print(affected_areas_count)
