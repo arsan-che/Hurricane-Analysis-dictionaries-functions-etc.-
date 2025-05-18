@@ -100,3 +100,17 @@ def most_affected_area(affected_areas_count):
 # Test most affected area
 max_area, max_area_count = most_affected_area(affected_areas_count)
 # print(max_area, max_area_count)
+# Find hurricane with highest death toll
+def most_deaths_hurricane(hurricanes):
+    """Identify the hurricane with the greatest number of deaths and its death toll."""
+    max_mortality_cane = 'Cuba I'
+    max_mortality = 0
+    for cane in hurricanes:
+        if hurricanes[cane]['Deaths'] > max_mortality:
+            max_mortality_cane = cane
+            max_mortality = hurricanes[cane]['Deaths']
+    return max_mortality_cane, max_mortality
+
+# Test highest mortality
+max_mortality_cane, max_mortality = most_deaths_hurricane(hurricanes)
+# print(max_mortality_cane, max_mortality)
