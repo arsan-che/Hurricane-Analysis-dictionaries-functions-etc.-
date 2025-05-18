@@ -19,3 +19,17 @@ damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M
 
 # Deaths caused by each hurricane
 deaths = [90, 4000, 16, 3103, 179, 184, 408, 682, 5, 1023, 43, 319, 688, 259, 37, 11, 2068, 269, 318, 107, 65, 19325, 51, 124, 17, 1836, 125, 87, 45, 133, 603, 138, 3057, 74]
+
+# Convert damage strings to float values
+def convert_damages_data(damages):
+    """Convert damages data from string to float and return converted data as a list."""
+    conversion = {"M": 1000000, "B": 1000000000}
+    updated_damages = []
+    for damage in damages:
+        if damage == "Damages not recorded":
+            updated_damages.append(damage)
+        elif damage.find('M') != -1:
+            updated_damages.append(float(damage[:damage.find('M')]) * conversion["M"])
+        elif damage.find('B') != -1:
+            updated_damages.append(float(damage[:damage.find('B')]) * conversion["B"])
+    return updated_damages
