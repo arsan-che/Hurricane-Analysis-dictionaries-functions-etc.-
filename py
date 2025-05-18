@@ -114,3 +114,28 @@ def most_deaths_hurricane(hurricanes):
 # Test highest mortality
 max_mortality_cane, max_mortality = most_deaths_hurricane(hurricanes)
 # print(max_mortality_cane, max_mortality)
+
+# Categorize hurricanes by mortality
+def categorize_by_mortality(hurricanes):
+    """Categorize hurricanes by mortality severity and return a dictionary."""
+    mortality_scale = {0: 0, 1: 100, 2: 500, 3: 1000, 4: 10000}
+    hurricanes_by_mortality = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for cane in hurricanes:
+        num_deaths = hurricanes[cane]['Deaths']
+        if num_deaths == mortality_scale[0]:
+            hurricanes_by_mortality[0].append(hurricanes[cane])
+        elif mortality_scale[0] < num_deaths <= mortality_scale[1]:
+            hurricanes_by_mortality[1].append(hurricanes[cane])
+        elif mortality_scale[1] < num_deaths <= mortality_scale[2]:
+            hurricanes_by_mortality[2].append(hurricanes[cane])
+        elif mortality_scale[2] < num_deaths <= mortality_scale[3]:
+            hurricanes_by_mortality[3].append(hurricanes[cane])
+        elif mortality_scale[3] < num_deaths <= mortality_scale[4]:
+            hurricanes_by_mortality[4].append(hurricanes[cane])
+        elif num_deaths > mortality_scale[4]:
+            hurricanes_by_mortality[5].append(hurricanes[cane])
+    return hurricanes_by_mortality
+
+# Test mortality categorization
+hurricanes_by_mortality = categorize_by_mortality(hurricanes)
+# print(hurricanes_by_mortality[4])
