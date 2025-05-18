@@ -33,3 +33,27 @@ def convert_damages_data(damages):
         elif damage.find('B') != -1:
             updated_damages.append(float(damage[:damage.find('B')]) * conversion["B"])
     return updated_damages
+
+# Test damage conversion
+updated_damages = convert_damages_data(damages)
+# print(updated_damages)
+
+# Create dictionary with hurricane names as keys
+def create_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_damages, deaths):
+    """Create dictionary of hurricanes with hurricane name as the key and a dictionary of hurricane data as the value."""
+    hurricanes = {}
+    for i in range(len(names)):
+        hurricanes[names[i]] = {
+            "Name": names[i],
+            "Month": months[i],
+            "Year": years[i],
+            "Max Sustained Wind": max_sustained_winds[i],
+            "Areas Affected": areas_affected[i],
+            "Damage": updated_damages[i],
+            "Deaths": deaths[i]
+        }
+    return hurricanes
+
+# Create hurricanes dictionary
+hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_damages, deaths)
+# print(hurricanes)
