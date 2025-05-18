@@ -86,3 +86,17 @@ def count_affected_areas(hurricanes):
 # Test affected areas count
 affected_areas_count = count_affected_areas(hurricanes)
 # print(affected_areas_count)
+# Find the most affected area
+def most_affected_area(affected_areas_count):
+    """Identify the area affected by the most hurricanes and its count."""
+    max_area = 'Central America'
+    max_area_count = 0
+    for area, count in affected_areas_count.items():
+        if count > max_area_count:
+            max_area = area
+            max_area_count = count
+    return max_area, max_area_count
+
+# Test most affected area
+max_area, max_area_count = most_affected_area(affected_areas_count)
+# print(max_area, max_area_count)
